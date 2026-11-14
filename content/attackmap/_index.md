@@ -34,8 +34,8 @@ no offensive payloads.
 AttackMap is under active development, but progress may be slow until more help
 or co-maintainers join. If you'd like to help with the core
 engine, an analyzer, the macOS app, or the docs,
-[open an issue](https://github.com/mlaify/AttackMap/issues) to say hello. Security
-reports are welcome at [security@mlaify.io](mailto:security@mlaify.io).
+[open an issue](https://github.com/mlaify/AttackMap/issues) to say hello. Report
+vulnerabilities through AttackMap's **Security** tab using **Report a vulnerability**.
 {{< /callout >}}
 
 ## What it finds

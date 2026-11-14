@@ -10,12 +10,19 @@ comments: false
 
 This website welcomes feedback from security researchers and the general public to help improve our security. If you believe you have discovered a vulnerability, privacy issue, exposed data, or other security issue in any of our assets, we want to hear from you.
 
-### Official Channels
+### Choose the right channel
 
-Please report security issues via one of the following channels, providing as much detail as possible. The more information you include, the easier it will be for us to triage and address the issue.
+Use a public GitHub issue in the affected repository for ordinary bugs, crashes, installation problems, false positives, false negatives, incorrect findings, severity disagreements, feature requests, and documentation corrections.
 
-- **Email**: [security@mlaify.io](mailto:security@mlaify.io)
-- **PGP key**: [security@mlaify.io PGP key](https://mlaify.io/publickey.security.mlaify.io-38642d275f820a026f3bfc5e7e44d7d05bafd4df.asc) (fingerprint `3864 2D27 5F82 0A02 6F3B FC5E 7E44 D7D0 5BAF D4DF`)
+Use GitHub Private Vulnerability Reporting only for a credible vulnerability in the affected project itself:
+
+1. Open the affected repository on [github.com/mlaify](https://github.com/mlaify).
+2. Select its **Security** tab.
+3. Select **Report a vulnerability**.
+
+Do not put vulnerability details in a public issue, pull request, discussion, or comment. Automated scanner output without validation and a demonstrated project-specific impact is not sufficient by itself.
+
+This is a coordinated vulnerability disclosure program, not a bug bounty. Payment, rewards, and swag are not offered or promised.
 
 ### Systems in Scope
 
