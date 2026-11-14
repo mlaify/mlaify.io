@@ -2,7 +2,7 @@
 
 > M&L AI makes AI-driven software focused on defensive cybersecurity — local-first, open source, and built to respect the people who use it. This is a static site: there is no API, no login, and no on-site AI agent.
 
-All projects are open source under github.com/mlaify. Report vulnerabilities through the affected repository's Security tab using Private Vulnerability Reporting.
+All projects are open source under github.com/mlaify. They are personal, hobby-maintained projects run by one person. There is no bug bounty or paid disclosure program. Report a credible vulnerability in a project itself through the affected repository's Security tab using Private Vulnerability Reporting; see the organization-wide policy at https://github.com/mlaify/.github/blob/main/SECURITY.md.
 
 ## Projects
 
@@ -24,7 +24,7 @@ All projects are open source under github.com/mlaify. Report vulnerabilities thr
 - [About](https://mlaify.io/about/): Who's behind M&L AI and how the work is approached.
 - [Build principles](https://mlaify.io/principles/): Privacy by default, defensive only, and status you can trust.
 - [Contribute](https://mlaify.io/contribute/): How to help with the projects.
-- [Security policy](https://mlaify.io/security/): Vulnerability disclosure policy and contact.
+- [Security reporting](https://mlaify.io/security/): Reporting channels, maintainer limits, and the canonical organization policy.
 - [Privacy policy](https://mlaify.io/privacy-policy/): What the site does and doesn't collect.
 
 ## Optional
