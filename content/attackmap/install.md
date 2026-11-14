@@ -1,12 +1,13 @@
 ---
 title: "Install"
-description: "Install the AttackMap CLI with Homebrew, uv or pip, and the macOS app."
+description: "Install the AttackMap CLI from PyPI or Homebrew, and the macOS app."
 weight: 20
 ---
 
-AttackMap needs Python 3.11 or later. It isn't on PyPI: releases come from GitHub,
-the [M&L AI package index](https://pkg.mlaify.io/) and the
-[Homebrew tap](https://github.com/mlaify/homebrew-tap).
+AttackMap needs Python 3.11 or later. It's on [PyPI](https://pypi.org/project/attackmap/),
+together with all 15 official analyzer plugins, and in the
+[Homebrew tap](https://github.com/mlaify/homebrew-tap). The same release files are also on
+the [M&L AI package index](https://pkg.mlaify.io/) and GitHub.
 
 ## Homebrew
 
@@ -16,19 +17,19 @@ The CLI with all 15 official analyzer plugins:
 brew install mlaify/tap/attackmap
 ```
 
-## uv or pip, from the package index
+## uv, pipx or pip, from PyPI
 
-The CLI with every analyzer plugin, from pkg.mlaify.io:
+The CLI with every analyzer plugin:
 
 ```bash
-uv tool install "attackmap[all]" --index mlaify=https://pkg.mlaify.io/pypi/simple/ --index-strategy first-index
+uv tool install "attackmap[all]"     # or: pipx install "attackmap[all]"
 ```
 
-Core only, straight from GitHub (add analyzers later with `attackmap suggest . --install`
-or `-m <name>`):
+Core only (add analyzers later with `attackmap suggest . --install` or `-m <name>`, or
+install one directly, e.g. `uv tool install attackmap --with attackmap-analyzer-go`):
 
 ```bash
-pipx install git+https://github.com/mlaify/AttackMap.git
+pipx install attackmap
 ```
 
 The `[llm]` extra adds the Anthropic and OpenAI SDKs for the API backends of the AI

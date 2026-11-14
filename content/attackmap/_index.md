@@ -84,12 +84,13 @@ SARIF 2.1.0, Mermaid and Graphviz diagrams, baseline diff gating with `--fail-on
 
 ```bash
 brew install mlaify/tap/attackmap           # the CLI and all 15 analyzer plugins
+uv tool install "attackmap[all]"            # or from PyPI: the same, with uv or pipx
 attackmap analyze /path/to/repo --output reports
 ```
 
 Start with `reports/defensive-review.md`. Every run also writes JSON
 (`attackmap-report.json`), SARIF, diagrams and Sigma rules. [Install](/attackmap/install/)
-has uv, pip and the macOS app; [how it works](/attackmap/how-it-works/) explains what a
+has PyPI (uv, pipx, pip) and the macOS app; [how it works](/attackmap/how-it-works/) explains what a
 scan does; the [quickstart](https://docs.mlaify.io/attackmap/quickstart/) and
 [CLI reference](https://docs.mlaify.io/attackmap/cli/) cover the rest.
 

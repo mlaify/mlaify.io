@@ -1,13 +1,13 @@
 ---
 title: "Changelog"
-description: "What changed in each release, from mlaify/AttackMap's CHANGELOG.md at v0.6.2."
+description: "What changed in each release, from mlaify/AttackMap's CHANGELOG.md at v0.6.4."
 weight: 30
-release: "v0.6.2"
+release: "v0.6.4"
 ---
 
 {{< callout type="note" >}}
-From [CHANGELOG.md](https://github.com/mlaify/AttackMap/blob/v0.6.2/CHANGELOG.md) at
-[v0.6.2](https://github.com/mlaify/AttackMap/releases/tag/v0.6.2), the latest release. Changes on
+From [CHANGELOG.md](https://github.com/mlaify/AttackMap/blob/v0.6.4/CHANGELOG.md) at
+[v0.6.4](https://github.com/mlaify/AttackMap/releases/tag/v0.6.4), the latest release. Changes on
 `main` since then are in the [repository](https://github.com/mlaify/AttackMap/blob/main/CHANGELOG.md).
 {{< /callout >}}
 
@@ -17,7 +17,40 @@ All notable changes to AttackMap will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.6.4] - 2026-11-14
+
+### Security
+
+- **The GitHub Action's `extras: all` resolved the analyzer plugins from PyPI, where their names were unclaimed.** Since 0.6.2, `[all]` pins the analyzers' released versions (`attackmap-analyzer-python==0.2.0`, …), and the Action installs it with a plain `pip install`, which reads PyPI. None of those names existed on PyPI, so `extras: all` failed to install, and anyone who registered one of the names could have had their code installed in the workflows running the Action. All 15 analyzers are now published on PyPI by their own repositories, so the names are taken and `extras: all` installs them.
+
+### Changed
+
+- **Published on PyPI.** `pip install "attackmap[all]"` / `uv tool install "attackmap[all]"` now work with no extra index. Each repository's `release.yml` uploads the release's own wheel and sdist to PyPI with trusted publishing, in a `pypi` environment that needs the operator's approval, so PyPI and pkg.mlaify.io serve the same files (#417). `scripts/pypi/` sets up the environments and publishes releases that already exist (#418).
+- `[all]` pins `attackmap-analyzer-terraform==0.2.1`: PyPI refuses the 0.2.0 filenames, so terraform 0.2.1 is the same analyzer under a new version. `plugins_lock.py` is regenerated; the other analyzers' commits changed only by their release workflow.
+- README and the external-analyzer guide install from PyPI; the README's links are absolute, so they work on the PyPI project page.
+
+## [0.6.3] - 2026-11-12
+
+### Security
+
+- **A pull request could silence its own findings under `--suppress-from-ref` (GHSA-677m-4884-vg22).** With `--suppress-from-ref` (the GitHub Action's default on pull requests), an `attackmap:ignore` comment already on the base branch was trusted because its own line hadn't changed, but it also covers the line below it. A PR that inserted a line there, or changed the line the directive already covered, had its new finding suppressed as trusted, so `--fail-on-new-high` stayed green. The finding was still listed as suppressed in the JSON report and SARIF.
+  - A trusted directive no longer covers the line below it when that line was added or changed since the ref; the new finding stays active and the run prints a suppression warning. `--allow-pr-suppressions` keeps the old behaviour.
+  - Two more routes to the same bypass, found while fixing: inline directives and the "added since the ref" check numbered lines with `str.splitlines()` while findings count `\n` only, so one form feed or U+2028 in a comment above a trusted directive shifted it onto the line the PR added; and `expires:` was not part of the key that identifies a trusted suppress-file entry, so a PR could extend or delete the expiry of an expired base entry and have it applied again. Everything that numbers or indexes lines now uses one `\n`-only convention (`srcpaths.split_lines`), and an edited expiry makes the entry pending.
+  - Reported by [0xhyu](https://github.com/0xhyu) (the adjacent-line case; the two variants were found internally).
+- **A committed `.attackmap-output` file excluded a directory from the scan (GHSA-j544-8x8g-c3mw).** Any directory carrying that marker was skipped by every scanner and plugin (#216), by existence alone and with no trace in the output, so a PR could commit an empty marker under `src/`, have the subtree's findings reported as resolved and new code there never scanned.
+  - Under `--suppress-from-ref`, a marker that does not exist at the ref is ignored and its directory is scanned (with a `Scan warning`); markers under the run's own output directory are always trusted. Every skipped directory is now recorded under `scan.limitations` (and reported to plugins through the SDK's `on_skip`), and baseline findings whose instances all lived under a skipped directory are classified "newly excluded from the scan" in the diff and the PR comment instead of "resolved"; `--fail-on-new-suppression` fails on them. CI users: check your default branches for `.attackmap-output` files outside the report directory.
+- **`suggest --install` and `--install-missing` ran Python from the scanned checkout (GHSA-qv53-p57x-x9m4).** The analyzer install ran `python -m pip install <pinned url>` with the user's working directory, and `python -m` puts the current directory first on `sys.path`, so a `pip/` package committed in the repository the user was standing in ran instead of pip, as the user. The command is now `python -I -m pip install …`, run in an empty temporary directory with the `PYTHON*` variables removed and `PYTHONSAFEPATH=1` set.
+- **Repo-derived text could inject Markdown into the reports and diagram labels (GHSA-3qwr-cfpj-hgjr).** `attack-surface.md`, `attackmap-exploitability.md` and `attackmap-paths.md` printed route paths, files, outbound URLs and package names raw, so a route string in a scanned repo could plant a live link, an image or HTML in them (the PR comment, diff, SARIF and defensive review were already escaped, #233). The same text could also carry raw terminal control sequences (colour codes, OSC 8 hyperlinks) into these files and the `.dot` and topology diagrams.
+  - Both Markdown reports now escape every repo-derived value with `md_text`/`md_code`. Attack-path headings are escaped; attack-path and topology Mermaid labels show `<`, `>` and backticks as literal characters, and every diagram label (Mermaid and DOT) shows control characters as `\uXXXX`. The fleet outputs (`fleet-summary.md`, `fleet-graph.md`), which wrote cross-repo call targets and routes raw, are escaped the same way. JSON, SARIF and the PR comment keep the raw values; the JSON report's `attack_surface_summary` copy of the Markdown is escaped like the file.
+  - Reported by [0xhyu](https://github.com/0xhyu) (`attack-surface.md` and `attackmap-exploitability.md`; the diagram labels, control characters and fleet outputs were found internally).
+
+### Fixed
+
+- `sanitize_llm_markdown`, which defangs the Markdown the optional LLM passes write (`defensive-review-llm.md`, `vulnerability-hypotheses.md`, `remediation.md`, `triage.md`), matched links, images and HTML tags with exact patterns that accept less than CommonMark does: a tag containing a newline, link text with an escaped `]`, a newline or nested brackets, a reference-style `[ref]: url` definition and a protocol-relative `//host` destination all passed through live, and `<…>` was stripped inside fenced code (`#include <stdio.h>` lost its argument). The pass is now fence-aware (code blocks and code spans are kept verbatim) and neutralises every remaining link, image or definition syntax in place; `//host` destinations are defanged like `https://` ones.
+
+### Changed
+
+- The GitHub Action's new `fail-on-new-suppression` input is **on by default** when a baseline is given: a finding that was active in the baseline and is suppressed, or excluded from the scan, in this run fails the job, whatever silenced it and whatever its severity. It will also fail legitimate changes (an entry widened on the base branch, an expiry extended in the PR) until they are re-trusted on the base; set it to `false` only if you accept that a PR could silence a finding without failing the check, and the Action prints a warning when it is off.
 
 ## [0.6.2] - 2026-11-04
 
@@ -578,7 +611,7 @@ Security release: AttackMap is now safe to run on untrusted repositories (v0.5.0
   `cve`) are scored — advisory/architectural findings are out of scope and never
   count as false positives. `--output` writes `benchmark-results.{md,json}`;
   `--fail-under P` is a CI regression gate. New `bench.py`; docs in
-  [`docs/benchmark.md`](https://github.com/mlaify/AttackMap/blob/v0.6.2/docs/benchmark.md). Baseline on the example-app corpus:
+  [`docs/benchmark.md`](https://github.com/mlaify/AttackMap/blob/v0.6.4/docs/benchmark.md). Baseline on the example-app corpus:
   **100% precision across all scored classes**, with recall gaps (injection,
   unauthenticated admin/internal routes, cross-framework BOLA) that the road-to-1.0
   epics now target. Every future detector reports its delta here.
@@ -1461,9 +1494,11 @@ for codebases.
 - All evidence-text snippets are read from local source files only; AttackMap
   does not exfiltrate code unless the user opts into `--llm`, in which case the
   evidence pack is sent to the configured LLM backend.
-- See [SECURITY.md](https://github.com/mlaify/AttackMap/blob/v0.6.2/SECURITY.md) for vulnerability disclosure.
+- See [SECURITY.md](https://github.com/mlaify/AttackMap/blob/v0.6.4/SECURITY.md) for vulnerability disclosure.
 
-[Unreleased]: https://github.com/mlaify/AttackMap/compare/v0.6.2...HEAD
+[Unreleased]: https://github.com/mlaify/AttackMap/compare/v0.6.4...HEAD
+[0.6.4]: https://github.com/mlaify/AttackMap/compare/v0.6.3...v0.6.4
+[0.6.3]: https://github.com/mlaify/AttackMap/compare/v0.6.2...v0.6.3
 [0.6.2]: https://github.com/mlaify/AttackMap/compare/v0.6.1...v0.6.2
 [0.6.1]: https://github.com/mlaify/AttackMap/compare/v0.6.0...v0.6.1
 [0.6.0]: https://github.com/mlaify/AttackMap/compare/v0.5.1...v0.6.0
