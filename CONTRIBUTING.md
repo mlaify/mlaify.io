@@ -6,8 +6,8 @@ By participating, you agree to follow our [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## Ways to Contribute
 
-- **Report a bug or content issue** — open an issue using the [bug report template](.github/ISSUE_TEMPLATE/bug_report.md).
-- **Suggest a feature or improvement** — open an issue using the [feature request template](.github/ISSUE_TEMPLATE/feature_request.md).
+- **Report a bug or content issue** — open an issue using the [bug report form](https://github.com/mlaify/mlaify.io/issues/new/choose).
+- **Suggest a feature or improvement** — open an issue using the [feature request form](https://github.com/mlaify/mlaify.io/issues/new/choose).
 - **Fix a typo or update content** — open a pull request directly.
 - **Report a security vulnerability** — **do not open a public issue.** Follow the disclosure process in [`SECURITY.md`](SECURITY.md).
 
