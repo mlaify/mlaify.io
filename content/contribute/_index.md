@@ -39,14 +39,18 @@ You don't have to write code to be useful.
 
 - **License.** Each repo's license is in its `LICENSE` file (MIT unless specified otherwise). Contributions follow the repo's license.
 - **PR style.** Match the existing style. Run formatters/linters. Keep PRs scoped — small, single-purpose changes get reviewed faster.
-- **Security disclosure.** For security-impacting issues, follow the disclosure policy in the relevant repo's `SECURITY.md`. Do not file public issues for unpatched vulnerabilities.
+- **Security reporting.** For a credible vulnerability in a project itself, follow the
+  [organization-wide policy](https://github.com/mlaify/.github/blob/main/SECURITY.md) and use
+  that repository's GitHub Private Vulnerability Reporting form. Do not file public issues for
+  unpatched vulnerabilities.
 - **Code of conduct.** Treat people well. Mistakes are expected; bad faith is not.
 
 ## Contact
 
 - **Issues** — open in the relevant repository.
 - **Discussions** — every repo has GitHub Discussions enabled.
-- **Security** — `SECURITY.md` in the relevant repository for disclosure protocol.
+- **Security** — the [organization-wide policy](https://github.com/mlaify/.github/blob/main/SECURITY.md)
+  and the affected repository's **Security** tab.
 - **Everything else** — use the relevant repository's GitHub Discussion.
 
 Conversation lives next to the code it's about. I don't run a shared chat, mailing list, or Slack.
