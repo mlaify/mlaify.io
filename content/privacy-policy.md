@@ -158,7 +158,7 @@ This website processes only limited technical data necessary for secure operatio
 
 You may contact the site operator regarding privacy-related requests:
 
-- **GitHub:** Open an issue in the related repository for requests that contain no private information.
+- **GitHub:** use the [privacy request form](https://github.com/mlaify/mlaify.io/issues/new?template=privacy.yml). The form is public, so do not include personal information; your GitHub account identifies you, and replies stay in the issue.
 
 Because this site does not maintain user accounts or personal profiles, the ability to identify or act on specific data may be limited.
 
@@ -262,7 +262,7 @@ Violations may result in moderation actions, including content removal or partic
 ## Reporting
 
 Concerns may be reported via:
-- **GitHub:** Use the affected repository's **Security** tab for a private report, or file a public issue when confidentiality is not required.
+- **GitHub:** for a private report, use **Report content**, then **Report to repository admins**, on the comment, issue, pull request, or discussion, or [GitHub's Report abuse form](https://github.com/contact/report-abuse) if the concern involves a maintainer. File a public issue when confidentiality is not required.
 
 All reports will be reviewed and handled with discretion.
 

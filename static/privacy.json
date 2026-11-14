@@ -37,6 +37,7 @@
     "Texas TDPSA"
   ],
   "contact": {
-    "github": "https://github.com/mlaify"
+    "github": "https://github.com/mlaify",
+    "privacy_requests": "https://github.com/mlaify/mlaify.io/issues/new?template=privacy.yml"
   }
 }
