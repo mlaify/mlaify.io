@@ -1,7 +1,7 @@
 ---
 title: "About"
 
-description: "About M&L AI — AI-driven software focused on defensive cybersecurity."
+description: "About M&L AI — AI-driven defensive software development, plus offensive security testing and red-teaming."
 aliases:
   - /me/
 cascade:
@@ -10,7 +10,7 @@ cascade:
 
 <img src="/images/logo.svg" alt="M&amp;L AI logo" width="160" height="160" />
 
-M&L AI is where I make AI-driven software with a focus on defensive cybersecurity. I'm a privacy advocate and software developer, and everything I build here is open source.
+M&L AI is where I make AI-driven software with a focus on defensive cybersecurity. In addition to defensive, AI-driven software development, I also do offensive security work: offensive software testing and development, vulnerability testing, and red-teaming. I'm a privacy advocate and software developer, and everything I build here is open source.
 
 My work centers on a simple idea: software should respect the people who use it. That means privacy by default, no surveillance, no dark patterns, and code you can read, audit, and run yourself. I care about giving people practical control over their data and their tools.
 
@@ -37,6 +37,10 @@ See [build principles](/principles/) for the longer version.
 **[grrclone](/grrclone/)** is a free, open-source macOS menu bar app that connects [rclone](https://rclone.org) remotes as Finder volumes. It auto-discovers remotes, reconnects at login, and repairs mounts after sleep or a network change. No licence key, no phone-home, no kernel extension, no root. Install it with `brew install --cask mlaify/tap/grrclone`.
 
 **[openlens-fw](/openlens-fw/)** is hardened, open-source replacement firmware for the Anpviz IPC-D240W-S IP camera, written after [the camera security research](https://matthewd.xyz/writing/anpviz-camera-security/) found 24 vulnerabilities in its stock firmware. It keeps the stock kernel and replaces the whole userland: no shared credentials, nothing that parses the network running as root, a certificate authority on each camera, and updates signed with the owner's own key. Its documentation is at [docs.mlaify.io](https://docs.mlaify.io/openlens-fw/).
+
+## Offensive security
+
+Defensive tools are only as good as the attacks they've been tested against, so I also work the other side: offensive software testing and development, vulnerability testing, and red-teaming. The [Anpviz camera security research](https://matthewd.xyz/writing/anpviz-camera-security/) is one example: testing the camera's stock firmware found 24 vulnerabilities, which I reported through coordinated disclosure, and the hardened replacement firmware above grew out of it.
 
 ## Elsewhere
 

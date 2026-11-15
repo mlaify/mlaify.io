@@ -1,5 +1,5 @@
-description = "M&L AI — AI-driven software focused on defensive cybersecurity, built open source by a privacy advocate."
-tagline = "AI-driven software focused on defensive cybersecurity."
+description = "M&L AI — AI-driven defensive software development, plus offensive security testing and red-teaming, built open source by a privacy advocate."
+tagline = "AI-driven defensive software, plus offensive security testing and red-teaming."
 
 # Default OG / Twitter image
 ogImage = "images/og.png"
