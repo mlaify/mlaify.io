@@ -12,7 +12,7 @@ aliases:
   - /build-principles/
 ---
 
-These are not aspirational. They are the conventions my open source work — AI-driven software and defensive cybersecurity tooling — actually follows.
+These are not aspirational. They are the conventions my open source work — AI-driven software, defensive cybersecurity tooling, and offensive security testing and red-teaming — actually follows.
 
 ## 1. Build practical systems for real operator workflows
 
