@@ -40,7 +40,7 @@ See [build principles](/principles/) for the longer version.
 
 ## Offensive security
 
-Defensive tools are only as good as the attacks they've been tested against, so I also work the other side: offensive software testing and development, vulnerability testing, and red-teaming. The [Anpviz camera security research](https://matthewd.xyz/writing/anpviz-camera-security/) is one example: testing the camera's stock firmware found 24 vulnerabilities, which I reported through coordinated disclosure, and the hardened replacement firmware above grew out of it.
+Defensive tools are only as good as the attacks they've been tested against, so I also work the other side: offensive software testing and development, vulnerability testing, and red-teaming. I take on offensive work only in authorized engagements. The [Anpviz camera security research](https://matthewd.xyz/writing/anpviz-camera-security/) is one example: testing the camera's stock firmware found 24 vulnerabilities, which I reported through coordinated disclosure, and the hardened replacement firmware above grew out of it.
 
 ## Elsewhere
 
