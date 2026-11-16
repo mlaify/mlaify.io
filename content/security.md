@@ -12,8 +12,8 @@ comments: false
 M&L AI is run by volunteers. We do our best to provide security and support for all of our
 projects, but both are best effort: there is no guaranteed response, fix, or timeline.
 Coordinated vulnerability disclosure (CVD) under this vulnerability disclosure policy (VDP) is
-handled the same way. M&L AI is not a commercial security service and has no dedicated security
-or support team.
+handled the same way. M&L AI is small: it is not a large company with dedicated teams for
+security, support, and everything else.
 
 The complete and canonical policy is the
 [mlaify organization-wide security reporting policy](https://github.com/mlaify/.github/blob/main/SECURITY.md).
