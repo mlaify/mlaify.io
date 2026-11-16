@@ -2,14 +2,15 @@
 title: "Security"
 slug: "security"
 url: "/security/"
-lastmod: 2026-11-14
+lastmod: 2026-11-16
 draft: false
 comments: false
 ---
 
 ## Security reporting
 
-M&L AI is a collection of personal, hobby-maintained projects run by one person. It is not a
+M&L AI's projects are worked on by just one person. Coordinated vulnerability disclosure (CVD)
+and this vulnerability disclosure policy (VDP) are handled on a best-effort basis. M&L AI is not a
 commercial security service and has no dedicated security or support team.
 
 The complete and canonical policy is the
